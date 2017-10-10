@@ -24,6 +24,7 @@
                     <input type="password" id="password" name="password" placeholder="Password" required/>
                 </fieldset>
                 <button type="submit" class="button"><i class="fa fa-sign-in"></i> Sign-In</button>
+                <a href="<c:url value='/register.htm'/>" class="button"><i class="fa fa-fw fa-user"></i> Register</a>
                 <br/>
                 <a href="<c:url value='/partims.htm'/>" target="_blank"><i class="fa fa-fw fa-external-link-square"></i> See all our partims</a>
             </form>
