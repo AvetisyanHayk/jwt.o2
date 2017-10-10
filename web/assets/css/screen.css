@@ -17,14 +17,18 @@ body.signin {
     background-image: url('../media/bg1.jpg');
 }
 
-header h1 {
+.signin header h1 {
     color: rgba(255,255,255,0.8);
+}
+
+header h1 {
+    color: darkslategray;
+    margin-left: 10px;
 }
 
 nav {
     background-color: darkslategray;
     margin-bottom: 15px;
-    padding: 15px;
     position: relative;
 }
 
@@ -32,17 +36,41 @@ nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    display: inline-block;
 }
 
 nav ul.pull-right {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 0;
+    right: 0;
 }
 
-nav ul li a {
+nav ul li {
+    padding: 5px;
+}
+
+nav ul li a,
+nav ul li a:visited {
     color: #fff;
     text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+nav ul li a:hover,
+nav ul li a:active {
+    color: darkslategray;
+    background-color: rgba(255,255,255,0.7);
+}
+
+main.container {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    background-color: #e6e6e6;
+    border-radius: 5px;
 }
 
 footer {
@@ -56,6 +84,28 @@ footer {
     left: 0;
     padding: 4px 6px;
     text-align: center;
+}
+
+table.data-table {
+    margin-bottom: 15px;
+}
+
+table.data-table td,
+table.data-table th {
+    line-height: 150%;
+    padding: 4px 6px;
+}
+
+table.data-table tbody tr:nth-child(odd) {
+    background-color: #ccc;
+}
+
+table.data-table tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+
+table.data-table input[type=checkbox] {
+    transform: scale(1.4, 1.4);
 }
 
 .signin form {
@@ -96,20 +146,40 @@ footer {
     padding: 4px 6px;;
 }
 
-.signin form button {
-    cursor: pointer;
-    margin-top: 15px;
+.button {
     font-size: 1.2rem;
     padding: 8px 10px;
 }
 
+.button:enabled {
+    cursor: pointer;
+}
+
+.button:disabled {
+    cursor: not-allowed;
+}
+
 .signin form a,
 .signin form a:visited {
+    display: inline-block;
     text-decoration: none;
     color: darkslategrey;
+    margin-top: 10px;
 }
 
 .signin form a:hover,
 .signin form a:active {
     color: maroon;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
 }
