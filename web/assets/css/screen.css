@@ -1,0 +1,115 @@
+/* 
+    Created on : Oct 10, 2017, 4:45:15 PM
+    Author     : Hayk
+*/
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i,900,900i');
+
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+body.signin {
+    background-image: url('../media/bg1.jpg');
+}
+
+header h1 {
+    color: rgba(255,255,255,0.8);
+}
+
+nav {
+    background-color: darkslategray;
+    margin-bottom: 15px;
+    padding: 15px;
+    position: relative;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul.pull-right {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer {
+    position: absolute;
+    box-sizing: border-box;
+    background-color: darkslategray;
+    color: #fff;
+    font-size: 0.75rem;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 4px 6px;
+    text-align: center;
+}
+
+.signin form {
+    width: 460px;
+    background-color: rgba(255,255,255,0.85);
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+}
+
+.signin form fieldset {
+    position: relative;
+    border: none;
+    padding: 50px 0 15px 0;
+}
+
+.signin form fieldset legend {
+    position: absolute;
+    top: 5px;
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.signin form label {
+    display: block;
+    font-size: 0.925rem;
+    margin-top: 15px;
+    margin-bottom: 2px;
+}
+
+.signin form input[type=text],
+.signin form input[type=password] {
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 150%;
+    font-size: 1.2rem;
+    padding: 4px 6px;;
+}
+
+.signin form button {
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 1.2rem;
+    padding: 8px 10px;
+}
+
+.signin form a,
+.signin form a:visited {
+    text-decoration: none;
+    color: darkslategrey;
+}
+
+.signin form a:hover,
+.signin form a:active {
+    color: maroon;
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/oefening2">
+    <Resource name="jdbc/javawebtechdb"
+        type="javax.sql.DataSource"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/javawebtechdb?useSSL=false"
+        username="student"
+        password="student"
+        closeMethod="close"/>
+</Context>
