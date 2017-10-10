@@ -7,10 +7,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@tag description="HTML head" pageEncoding="UTF-8"%>
 <%@attribute name="showSignOutButton" required="false" type="java.lang.Boolean"%>
+<%@attribute name="activeMenuItemId" required="false" type="java.lang.Integer"%>
 <header>
     <nav>
         <ul>
-            <li><a href="#" class="print"><i class="fa fa-print"></i> Print</a></li>
+            <li><a href="#" class="print"><i class="fa fa-fw fa-print"></i> Print</a></li>
+            <li<c:if test="${activeMenuItemId eq 1}"> class="active"</c:if>><a href="<c:url value='/index.htm'/>"><i class="fa fa-fw fa-home"></i> Home</a></li>
+            <li<c:if test="${activeMenuItemId eq 2}"> class="active"</c:if>><a href="<c:url value='/partims.htm'/>"><i class="fa fa-fw fa-external-link-square"></i> All Partims</a></li>
         </ul>
         <c:if test="${not empty showSignOutButton and showSignOutButton}">
             <ul class="pull-right">

@@ -11,7 +11,7 @@
 <html>
     <o2:head title="Homepage"/>
     <body>
-        <o2:header showSignOutButton="true"/>
+        <o2:header showSignOutButton="true" activeMenuItemId="1"/>
         <main class="container">
             <h2>Hello, ${user.username}</h2>
 

@@ -1,4 +1,4 @@
-package be.howest.o2.servlets;
+package be.howest.jwt.o2.servlets;
 
 import be.howest.jwt.o2.data.PartimRepository;
 import java.io.IOException;
@@ -29,6 +29,7 @@ public class PartimsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setAttribute("partims", partimRepo.findAll());
         request.getRequestDispatcher(VIEW).forward(request, response);
     }
 

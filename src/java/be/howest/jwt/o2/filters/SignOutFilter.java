@@ -1,5 +1,6 @@
 package be.howest.jwt.o2.filters;
 
+import be.howest.jwt.o2.domain.entities.User;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,26 +19,31 @@ import javax.servlet.http.HttpSession;
  */
 @WebFilter("*.htm")
 public class SignOutFilter implements Filter {
-    
+
     private static final String REDIRECT = "%s/signin.htm";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }
-    
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         request.setCharacterEncoding("UTF-8");
         String signOut = request.getParameter("signout");
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpSession session = req.getSession(false);
         if (signOut != null) {
-            HttpServletRequest req = (HttpServletRequest)request;
-            HttpSession session = req.getSession(false);
             if (session != null) {
                 session.invalidate();
             }
-            HttpServletResponse resp = (HttpServletResponse)response;
+            HttpServletResponse resp = (HttpServletResponse) response;
             resp.sendRedirect(String.format(REDIRECT, req.getContextPath()));
         } else {
+            User user = null;
+            if (session != null) {
+                user = (User)session.getAttribute("user");
+                request.setAttribute("user", user);
+            }
             chain.doFilter(request, response);
         }
     }
@@ -45,5 +51,5 @@ public class SignOutFilter implements Filter {
     @Override
     public void destroy() {
     }
-    
+
 }

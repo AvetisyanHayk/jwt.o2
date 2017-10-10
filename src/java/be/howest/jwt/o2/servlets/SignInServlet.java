@@ -1,4 +1,4 @@
-package be.howest.o2.servlets;
+package be.howest.jwt.o2.servlets;
 
 import be.howest.jwt.o2.data.UserRepository;
 import be.howest.jwt.o2.domain.entities.User;

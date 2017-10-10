@@ -1,4 +1,4 @@
-package be.howest.o2.servlets;
+package be.howest.jwt.o2.servlets;
 
 import be.howest.jwt.o2.data.PartimRepository;
 import be.howest.jwt.o2.data.UserRepository;
@@ -51,7 +51,6 @@ public class IndexServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setAttribute("username", user.getUsername());
         user = userRepo.readWithPartims(user);
-        request.setAttribute("user", user);
         request.setAttribute("partims", partimRepo.findAll());
         request.getRequestDispatcher(VIEW).forward(request, response);
     }
