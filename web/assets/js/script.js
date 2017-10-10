@@ -10,10 +10,7 @@ var toggleControls = function (e) {
     $ref.prop("disabled", false);
 };
 
-var initDataToggleControls = function () {
-    var $toggleAreas = $('[data-area=toggle]');
-    $toggleAreas.on("change", "input[type=checkbox]", toggleControls);
-};
+
 
 var selectAllSlaves = function (e) {
     var address = $(this).attr("data-select");
@@ -27,14 +24,32 @@ var unselectAllSlaves = function (e) {
     $slaves.prop("checked", false).trigger("change");
 };
 
+var disableToggleControls = function (e) {
+    var $form = $(this).closest("form");
+    $form[0].reset();
+    $form.find("[data-toggle-control]").prop("disabled", true);
+};
+
+var initDataToggleControls = function () {
+    var $toggleAreas = $('[data-area=toggle]');
+    $toggleAreas.on("change", "input[type=checkbox]", toggleControls);
+    $("button[type=reset]").on("click", disableToggleControls);
+};
+
 var initDataSelectControls = function () {
     $('[data-select]').on("click", selectAllSlaves);
     $('[data-unselect]').on("click", unselectAllSlaves);
 };
 
+var showPrintDialog = function(e) {
+    e.preventDefault();
+    window.print();
+};
+
 var init = function () {
     initDataToggleControls();
     initDataSelectControls();
+    $(".print").on("click", showPrintDialog);
 };
 
 $(document).ready(init);

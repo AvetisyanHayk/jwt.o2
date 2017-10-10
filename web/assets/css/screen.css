@@ -71,6 +71,7 @@ main.container {
     padding: 15px;
     background-color: #e6e6e6;
     border-radius: 5px;
+    box-sizing: border-box;
 }
 
 footer {
@@ -182,4 +183,22 @@ table.data-table input[type=checkbox] {
 
 .text-center {
     text-align: center;
+}
+
+@media screen {
+
+}
+
+@media print {
+    button, nav, main h2 {
+        display: none;
+    }
+
+    main.container {
+        width: 100%;
+    }
+
+    form fieldset {
+        border: 1px solid #ccc;
+    }
 }

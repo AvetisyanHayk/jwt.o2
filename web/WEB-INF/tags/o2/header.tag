@@ -10,7 +10,7 @@
 <header>
     <nav>
         <ul>
-            <li><a href="#"><i class="fa fa-print"></i> Print</a></li>
+            <li><a href="#" class="print"><i class="fa fa-print"></i> Print</a></li>
         </ul>
         <c:if test="${not empty showSignOutButton and showSignOutButton}">
             <ul class="pull-right">

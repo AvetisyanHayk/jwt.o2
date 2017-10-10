@@ -57,7 +57,7 @@
                                 </c:forEach>
                             </tbody>
                         </table>
-                        <button type="submit" class="button" disabled="disabled" data-toggle-control="partims-edited"><i class="fa fa-remove"></i> Cancel</button>
+                        <button type="reset" class="button" disabled="disabled" data-toggle-control="partims-edited"><i class="fa fa-remove"></i> Cancel</button>
                         <button type="submit" class="button" disabled="disabled" data-toggle-control="partims-edited"><i class="fa fa-save"></i> Save</button>
                         <button type="button" class="button" data-select="partim"><i class="fa fa-checkbox-square"></i> Select All</button>
                         <button type="button" class="button" data-unselect="partim"><i class="fa fa-square-o"></i> Unselect All</button>
