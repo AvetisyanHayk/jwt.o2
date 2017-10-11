@@ -187,8 +187,17 @@ table.data-table input[type=checkbox] {
     text-align: center;
 }
 
-@media screen {
+.alert {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    border-radius: 4px;
+}
 
+.alert-warning {
+    background-color: gold;
+    color: #000;
 }
 
 @media print {

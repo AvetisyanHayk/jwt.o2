@@ -2,15 +2,12 @@
  * 
  */
 
-
 var toggleControls = function (e) {
     var $area = $(this).closest('[data-area=toggle]');
     var address = $area.attr('data-toggle-controls');
     var $ref = $('[data-toggle-control=' + address + ']');
     $ref.prop("disabled", false);
 };
-
-
 
 var selectAllSlaves = function (e) {
     var address = $(this).attr("data-select");
@@ -46,7 +43,19 @@ var showPrintDialog = function(e) {
     window.print();
 };
 
+var initSignIn = function() {
+    var $username = $('#username');
+    if ($username.val() !== undefined) {
+        if ($username.val().trim().length === 0) {
+            $username.focus();
+        } else {
+            $('#password').focus();
+        }
+    }
+};
+
 var init = function () {
+    initSignIn();
     initDataToggleControls();
     initDataSelectControls();
     $(".print").on("click", showPrintDialog);

@@ -22,14 +22,14 @@ public class SignInServlet extends HttpServlet {
     private static final String GET_SELF = "%s/signin.htm";
     private static final String REDIRECT = "%s/index.htm";
     private static final String VIEW = "WEB-INF/JSP/signin.jsp";
-    
+
     private final transient UserRepository userRepository = new UserRepository();
-    
+
     @Resource(name = UserRepository.JNDI_NAME)
     void setDataSource(DataSource dataSource) {
         userRepository.setDataSource(dataSource);
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -63,14 +63,19 @@ public class SignInServlet extends HttpServlet {
         }
         String username = request.getParameter("username");
         user = userRepository.findByUsername(username);
-        String password = request.getParameter("password");
-        if (user.passwordMatch(password)) {
-            session = request.getSession();
-            session.setAttribute("user", user);
-            response.sendRedirect(String.format(REDIRECT, request.getContextPath()));
-        } else {
-            // TODO user not found
+        if (user == null) {
+            request.setAttribute("error", "User not found!");
             request.getRequestDispatcher(VIEW).forward(request, response);
+        } else {
+            String password = request.getParameter("password");
+            if (user.passwordMatch(password)) {
+                session = request.getSession();
+                session.setAttribute("user", user);
+                response.sendRedirect(String.format(REDIRECT, request.getContextPath()));
+            } else {
+                request.setAttribute("error", "Wrong password!");
+                request.getRequestDispatcher(VIEW).forward(request, response);
+            }
         }
     }
 

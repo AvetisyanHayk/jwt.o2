@@ -19,16 +19,20 @@
                 <fieldset>
                     <legend><i class="fa fa-code"></i> Sign-In</legend>
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" placeholder="Username" required/>
+                    <input type="text" id="username" name="username" placeholder="Username" required value="${param.username}"/>
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Password" required/>
                 </fieldset>
                 <button type="submit" class="button"><i class="fa fa-sign-in"></i> Sign-In</button>
                 <a href="<c:url value='/register.htm'/>" class="button"><i class="fa fa-fw fa-user"></i> Register</a>
+                <c:if test="${not empty error}">
+                    <div class="alert alert-warning"><i class="fa fa-warning"></i> ${error}</div>
+                </c:if>
                 <br/>
                 <a href="<c:url value='/partims.htm'/>" target="_blank"><i class="fa fa-fw fa-external-link-square"></i> See all our partims</a>
             </form>
         </main>
         <o2:footer/>
+        <o2:tail/>
     </body>
 </html>
