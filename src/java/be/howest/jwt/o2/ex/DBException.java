@@ -6,6 +6,8 @@ package be.howest.jwt.o2.ex;
  */
 public class DBException extends RuntimeException {
 
+    private static final long serialVersionUID = 1L;
+
     public DBException(Throwable cause) {
         super("Database error", cause);
     }

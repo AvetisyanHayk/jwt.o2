@@ -15,7 +15,7 @@
             <h1>Oefening 2</h1>
         </header>
         <main>
-            <form method="post">
+            <form method="post" class="form-compact form-blue">
                 <fieldset>
                     <legend><i class="fa fa-code"></i> Sign-In</legend>
                     <label for="username">Username</label>
@@ -25,8 +25,11 @@
                 </fieldset>
                 <button type="submit" class="button"><i class="fa fa-sign-in"></i> Sign-In</button>
                 <a href="<c:url value='/register.htm'/>" class="button"><i class="fa fa-fw fa-user"></i> Register</a>
-                <c:if test="${not empty error}">
-                    <div class="alert alert-warning"><i class="fa fa-warning"></i> ${error}</div>
+                <c:if test="${not empty errorUserNotFound}">
+                    <div class="alert alert-warning"><i class="fa fa-warning"></i> User not found!</div>
+                </c:if>
+                <c:if test="${not empty errorWrongPassword}">
+                    <div class="alert alert-warning"><i class="fa fa-warning"></i> Wrong password!</div>
                 </c:if>
                 <br/>
                 <a href="<c:url value='/partims.htm'/>" target="_blank"><i class="fa fa-fw fa-external-link-square"></i> See all our partims</a>

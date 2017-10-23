@@ -16,6 +16,7 @@ public class UserRepository extends AbstractRepository {
     private static final String SQL = "SELECT * FROM user";
     private static final String SQL_READ = SQL + " WHERE id = ?";
     private static final String SQL_FIND_BY_USERNAME = SQL + " WHERE username = ?";
+    private static final String SQL_INSERT = "INSERT INTO user(username, password) VALUES(?, ?)";
 
     private final PartimRepository partimRepository = new PartimRepository();
     
@@ -65,6 +66,21 @@ public class UserRepository extends AbstractRepository {
         return readWithPartims(findByUsername(username));
     }
 
+    public boolean save(String username, String password) {
+        try (Connection connection = dataSource.getConnection();
+                PreparedStatement statement = connection.prepareStatement(SQL_INSERT)) {
+            connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+            connection.setAutoCommit(false);
+            statement.setString(1, username);
+            statement.setString(2, password);
+            int count = statement.executeUpdate();
+            connection.commit();
+            return count == 1;
+        } catch (SQLException ex) {
+            throw new DBException(ex);
+        }
+    }
+    
     private User build(ResultSet resultSet) throws SQLException {
         return new User(
                 resultSet.getLong("id"),

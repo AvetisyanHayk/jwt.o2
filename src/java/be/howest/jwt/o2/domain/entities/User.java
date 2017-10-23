@@ -15,9 +15,13 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public static final String USERNAME_PATTERN = "^_{0,1}[a-zA-Z]+(_{0,1}[a-zA-Z0-9]+)+$";
+    public static final String PASSWORD_PATTERN = "^[^$\\s]+\\S{3,}$";
+    public static final int MAX_USERNAME_LENGTH = 16;
+
     private final long id;
     private final String username;
-    private final String password;
+    private String password;
     private List<Partim> partims;
 
     public User(long id, String username, String password) {
@@ -45,17 +49,21 @@ public class User implements Serializable {
         }
         return partims.add(partim);
     }
-    
+
     public void setPartims(List<Partim> partims) {
         this.partims = partims;
     }
-    
+
     public List<Partim> getPartims() {
         return Collections.unmodifiableList(partims);
     }
 
     public boolean passwordMatch(String password) {
         return this.password.equals(password);
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

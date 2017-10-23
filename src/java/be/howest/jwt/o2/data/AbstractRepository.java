@@ -7,7 +7,7 @@ import javax.sql.DataSource;
  * @author Hayk
  */
 public class AbstractRepository {
-    public static final String JNDI_NAME = "jdbc/javawebtechdb";
+    public static final String JNDI_NAME = "jdbc/jwto2db";
     
     protected DataSource dataSource;
     

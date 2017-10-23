@@ -17,6 +17,8 @@ import javax.sql.DataSource;
 @WebServlet("/partims.htm")
 public class PartimsServlet extends HttpServlet {
 
+    private static final long serialVersionUID = 1L;
+    
     private static final String VIEW = "/WEB-INF/JSP/partims.jsp";
     
     private final transient PartimRepository partimRepo = new PartimRepository();
@@ -33,4 +35,12 @@ public class PartimsServlet extends HttpServlet {
         request.getRequestDispatcher(VIEW).forward(request, response);
     }
 
+    private void writeObject(java.io.ObjectOutputStream stream) throws java.io.IOException {
+        throw new java.io.NotSerializableException(getClass().getName());
+    }
+
+    private void readObject(java.io.ObjectInputStream stream) throws java.io.IOException, ClassNotFoundException {
+        throw new java.io.NotSerializableException(getClass().getName());
+    }
+    
 }

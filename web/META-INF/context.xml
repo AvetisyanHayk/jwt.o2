@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context path="/oefening2">
-    <Resource name="jdbc/javawebtechdb"
+    <Resource name="jdbc/jwto2db"
         type="javax.sql.DataSource"
         driverClassName="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/javawebtechdb?useSSL=false"
+        url="jdbc:mysql://localhost:3306/jwt_o2?useSSL=false"
         username="student"
         password="student"
         closeMethod="close"/>

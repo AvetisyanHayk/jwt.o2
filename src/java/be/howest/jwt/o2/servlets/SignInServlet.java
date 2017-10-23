@@ -2,6 +2,7 @@ package be.howest.jwt.o2.servlets;
 
 import be.howest.jwt.o2.data.UserRepository;
 import be.howest.jwt.o2.domain.entities.User;
+import be.howest.jwt.o2.util.PasswordBuilder;
 import java.io.IOException;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -19,7 +20,8 @@ import javax.sql.DataSource;
 @WebServlet("/signin.htm")
 public class SignInServlet extends HttpServlet {
 
-    private static final String GET_SELF = "%s/signin.htm";
+    private static final long serialVersionUID = 1L;
+    
     private static final String REDIRECT = "%s/index.htm";
     private static final String VIEW = "WEB-INF/JSP/signin.jsp";
 
@@ -64,23 +66,28 @@ public class SignInServlet extends HttpServlet {
         String username = request.getParameter("username");
         user = userRepository.findByUsername(username);
         if (user == null) {
-            request.setAttribute("error", "User not found!");
+            request.setAttribute("errorUserNotFound", true);
             request.getRequestDispatcher(VIEW).forward(request, response);
         } else {
-            String password = request.getParameter("password");
-            if (user.passwordMatch(password)) {
+            String realPassword = request.getParameter("password");
+            PasswordBuilder pb = new PasswordBuilder();
+            String securePassword = pb.createHashedPassword(realPassword);
+            if (user.passwordMatch(securePassword)) {
                 session = request.getSession();
                 session.setAttribute("user", user);
                 response.sendRedirect(String.format(REDIRECT, request.getContextPath()));
             } else {
-                request.setAttribute("error", "Wrong password!");
+                request.setAttribute("errorWrongPassword", true);
                 request.getRequestDispatcher(VIEW).forward(request, response);
             }
         }
     }
+    
+    private void writeObject(java.io.ObjectOutputStream stream) throws java.io.IOException {
+        throw new java.io.NotSerializableException(getClass().getName());
+    }
 
-    private void redirectToIndex(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+    private void readObject(java.io.ObjectInputStream stream) throws java.io.IOException, ClassNotFoundException {
+        throw new java.io.NotSerializableException(getClass().getName());
     }
 }

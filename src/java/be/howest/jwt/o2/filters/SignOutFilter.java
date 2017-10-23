@@ -36,12 +36,11 @@ public class SignOutFilter implements Filter {
             if (session != null) {
                 session.invalidate();
             }
-            HttpServletResponse resp = (HttpServletResponse) response;
+            HttpServletResponse resp = (HttpServletResponse) response; // TODO FindBugs Error?
             resp.sendRedirect(String.format(REDIRECT, req.getContextPath()));
         } else {
-            User user = null;
             if (session != null) {
-                user = (User)session.getAttribute("user");
+                User user = (User)session.getAttribute("user");
                 request.setAttribute("user", user);
             }
             chain.doFilter(request, response);

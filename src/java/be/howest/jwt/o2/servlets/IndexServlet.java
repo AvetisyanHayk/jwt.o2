@@ -19,6 +19,8 @@ import javax.sql.DataSource;
  */
 @WebServlet("/index.htm")
 public class IndexServlet extends HttpServlet {
+    
+    private static final long serialVersionUID = 1L;
 
     private final transient UserRepository userRepo = new UserRepository();
     private final transient PartimRepository partimRepo = new PartimRepository();
@@ -43,6 +45,7 @@ public class IndexServlet extends HttpServlet {
         if (user == null) {
             response.sendRedirect(String.format(REDIRECT, request.getContextPath()));
         } else {
+            user = userRepo.readWithPartims(user);
             processRequest(request, response, user);
         }
     }
@@ -50,9 +53,16 @@ public class IndexServlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response, User user)
             throws ServletException, IOException {
         request.setAttribute("username", user.getUsername());
-        user = userRepo.readWithPartims(user);
         request.setAttribute("partims", partimRepo.findAll());
         request.getRequestDispatcher(VIEW).forward(request, response);
     }
 
+    private void writeObject(java.io.ObjectOutputStream stream) throws java.io.IOException {
+        throw new java.io.NotSerializableException(getClass().getName());
+    }
+
+    private void readObject(java.io.ObjectInputStream stream) throws java.io.IOException, ClassNotFoundException {
+        throw new java.io.NotSerializableException(getClass().getName());
+    }
+    
 }

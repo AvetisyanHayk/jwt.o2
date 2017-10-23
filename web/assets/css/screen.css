@@ -111,42 +111,46 @@ table.data-table input[type=checkbox] {
     transform: scale(1.4, 1.4);
 }
 
-.signin form {
+.form-compact {
     width: 460px;
-    background-color: rgba(255,255,255,0.85);
     border-radius: 8px;
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
 }
 
-.signin form fieldset {
+.form-blue {
+    background-color: rgba(255,255,255,0.85);
+}
+
+form fieldset {
     position: relative;
     border: none;
     padding: 50px 0 15px 0;
+    margin: 0;
 }
 
-.signin form fieldset legend {
+form fieldset legend {
     position: absolute;
     top: 5px;
     font-size: 2rem;
     font-weight: 500;
 }
 
-.signin form label {
+form label {
     display: block;
     font-size: 0.925rem;
     margin-top: 15px;
     margin-bottom: 2px;
 }
 
-.signin form input[type=text],
-.signin form input[type=password] {
+form input[type=text],
+form input[type=password] {
     width: 100%;
     box-sizing: border-box;
-    line-height: 150%;
-    font-size: 1.2rem;
-    padding: 4px 6px;;
+    line-height: 110%;
+    font-size: 1.1rem;
+    padding: 10px 6px;
 }
 
 .button {
@@ -162,16 +166,19 @@ table.data-table input[type=checkbox] {
     cursor: not-allowed;
 }
 
-.signin form a,
-.signin form a:visited {
+a,
+a:visited {
     display: inline-block;
     text-decoration: none;
     color: darkslategrey;
+}
+
+form a {
     margin-top: 10px;
 }
 
-.signin form a:hover,
-.signin form a:active {
+a:hover,
+a:active {
     color: maroon;
 }
 
