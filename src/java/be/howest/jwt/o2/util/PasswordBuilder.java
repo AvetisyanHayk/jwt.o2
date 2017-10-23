@@ -1,6 +1,5 @@
 package be.howest.jwt.o2.util;
 
-import be.howest.jwt.o2.domain.entities.User;
 import be.howest.jwt.o2.ex.CoreException;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;

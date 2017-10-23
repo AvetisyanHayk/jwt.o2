@@ -1,5 +1,6 @@
 package be.howest.jwt.o2.data;
 
+import be.howest.jwt.o2.domain.entities.Partim;
 import be.howest.jwt.o2.domain.entities.User;
 import be.howest.jwt.o2.ex.DBException;
 import java.sql.Connection;
@@ -17,9 +18,11 @@ public class UserRepository extends AbstractRepository {
     private static final String SQL_READ = SQL + " WHERE id = ?";
     private static final String SQL_FIND_BY_USERNAME = SQL + " WHERE username = ?";
     private static final String SQL_INSERT = "INSERT INTO user(username, password) VALUES(?, ?)";
+    private static final String SQL_DELETE_USER_PARTIMS = "DELETE FROM user_partim WHERE userid = ?";
+    private static final String SQL_INSERT_PARTIMS = "INSERT INTO user_partim(userid, partimid) VALUES(?, ?)";
 
     private final PartimRepository partimRepository = new PartimRepository();
-    
+
     public User read(long id) {
         try (Connection connection = dataSource.getConnection();
                 PreparedStatement statement = connection.prepareStatement(SQL_READ)) {
@@ -49,7 +52,7 @@ public class UserRepository extends AbstractRepository {
             throw new DBException(ex);
         }
     }
-    
+
     public User readWithPartims(User user) {
         if (user != null) {
             partimRepository.setDataSource(dataSource);
@@ -61,7 +64,7 @@ public class UserRepository extends AbstractRepository {
     public User readWithPartims(long userid) {
         return readWithPartims(read(userid));
     }
-    
+
     public User findByUsernameWithPartims(String username) {
         return readWithPartims(findByUsername(username));
     }
@@ -80,7 +83,29 @@ public class UserRepository extends AbstractRepository {
             throw new DBException(ex);
         }
     }
-    
+
+    public void update(User user) {
+        try (Connection connection = dataSource.getConnection();
+                PreparedStatement statementDelete = connection.prepareStatement(SQL_DELETE_USER_PARTIMS)) {
+            connection.setTransactionIsolation(Connection.TRANSACTION_SERIALIZABLE);
+            connection.setAutoCommit(false);
+            statementDelete.setLong(1, user.getId());
+            statementDelete.execute();
+
+            try (PreparedStatement statement = connection.prepareStatement(SQL_INSERT_PARTIMS)) {
+                for (Partim partim : user.getPartims()) {
+                    statement.setLong(1, user.getId());
+                    statement.setLong(2, partim.getId());
+                    statement.addBatch();
+                }
+                statement.executeBatch();
+            }
+            connection.commit();
+        } catch (SQLException ex) {
+            throw new DBException(ex);
+        }
+    }
+
     private User build(ResultSet resultSet) throws SQLException {
         return new User(
                 resultSet.getLong("id"),

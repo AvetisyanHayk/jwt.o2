@@ -40,7 +40,7 @@
                                                     <c:set var="found" value='true'/>
                                                 </c:if>
                                             </c:forEach>
-                                            <input type="checkbox" id="${partim.id}" name="partims"${checkedAttr}/>
+                                            <input type="checkbox" value="${partim.id}" name="partimid"${checkedAttr}/>
                                         </td>
                                         <td class="text-center">${partim.code}</td>
                                         <td class="text-left">${partim.name}</td>
